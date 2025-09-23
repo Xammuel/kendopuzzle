@@ -48,7 +48,8 @@ const WordHuntPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) => {
     <div className="puzzle-container">
       <div className="puzzle-info">
         <h2>Puzzle 4: The Hidden Word</h2>
-        <p>Read the story carefully and find the hidden word. Enter it below to unlock the next puzzle!</p>
+        <p>Okay, well done so far! But now things are going to get more difficult from here..
+            <br />Read the story carefully and find the hidden word. Enter it below to unlock the next puzzle!</p>
         {showHint && !hasFoundWord && (
           <p className="hint">💡 Hint: Try hovering over words that seem significant or emphasized...</p>
         )}
