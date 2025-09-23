@@ -114,6 +114,74 @@
   box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4) !important;
 }
 
+/* MultiSelect Puzzle Styles */
+.multiselect-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.multiselect-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 2px solid #dee2e6;
+  min-width: 400px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.multiselect-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #495057;
+  text-align: center;
+}
+
+.tech-multiselect {
+  width: 100% !important;
+  min-width: 300px !important;
+}
+
+.tech-multiselect .k-multiselect {
+  border: 2px solid #dee2e6 !important;
+  border-radius: 8px !important;
+  font-size: 1.1rem !important;
+}
+
+.tech-multiselect .k-multiselect:focus-within {
+  border-color: #646cff !important;
+  box-shadow: 0 0 0 0.2rem rgba(100, 108, 255, 0.25) !important;
+}
+
+.tech-multiselect.k-disabled .k-multiselect {
+  background-color: #e9ecef !important;
+  border-color: #6c757d !important;
+}
+
+.selection-info {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.selection-info p {
+  margin: 0.5rem 0;
+  font-weight: 600;
+  color: #495057;
+}
+
+.selected-items {
+  font-size: 0.9rem;
+  color: #6c757d;
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
 .puzzle-progress {
   margin-top: 1.5rem;
   text-align: center;

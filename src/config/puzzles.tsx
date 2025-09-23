@@ -1,6 +1,7 @@
 import type { PuzzleConfig } from '../types'
 import NumberSequencePuzzle from '../components/puzzles/NumberSequencePuzzle'
 import DatePickerPuzzle from '../components/puzzles/DatePickerPuzzle'
+import MultiSelectPuzzle from '../components/puzzles/MultiSelectPuzzle'
 import BlankPuzzle from '../components/puzzles/BlankPuzzle'
 
 // Create puzzle configurations
@@ -19,9 +20,9 @@ export const puzzleConfigs: PuzzleConfig[] = [
   },
   {
     id: 2,
-    title: "Puzzle 3",
-    description: "Coming soon!",
-    component: (props) => <BlankPuzzle {...props} puzzleNumber={3} />
+    title: "Technology Selection",
+    description: "Select the right technologies",
+    component: MultiSelectPuzzle
   },
   {
     id: 3,
