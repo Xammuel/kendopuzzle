@@ -182,6 +182,189 @@
   margin-top: 0.5rem;
 }
 
+/* Word Hunt Puzzle Styles */
+.story-container {
+  max-width: 700px;
+  margin: 2rem auto;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 2px solid #dee2e6;
+}
+
+.story-content h3 {
+  color: #495057;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  border-bottom: 2px solid #dee2e6;
+  padding-bottom: 0.5rem;
+}
+
+.story-content p {
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  color: #495057;
+  font-size: 1.1rem;
+  text-align: justify;
+}
+
+.special-paragraph {
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  color: #495057;
+  font-size: 1.1rem;
+  text-align: justify;
+}
+
+.important-word {
+  color: #646cff;
+  font-weight: 600;
+  cursor: help;
+}
+
+.tooltip-word {
+  background: none;
+  border: none;
+  color: #dc3545;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0;
+  margin: 0;
+  transition: all 0.3s ease;
+}
+
+.tooltip-word:hover,
+.tooltip-word:focus {
+  color: #b02a37;
+  text-decoration: none;
+  background-color: rgba(220, 53, 69, 0.1);
+  padding: 2px 4px;
+  border-radius: 4px;
+  outline: none;
+}
+
+.tooltip-container {
+  display: inline-block;
+  position: relative;
+}
+
+.custom-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  white-space: nowrap;
+  z-index: 1000;
+  margin-bottom: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  animation: tooltipFadeIn 0.3s ease-in-out;
+}
+
+.custom-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #333;
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.input-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 2px solid #dee2e6;
+  min-width: 350px;
+  max-width: 450px;
+  width: 100%;
+}
+
+.input-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #495057;
+  text-align: center;
+}
+
+.secret-input {
+  width: 100% !important;
+}
+
+.secret-input .k-input {
+  font-size: 1.2rem !important;
+  padding: 0.75rem !important;
+  border: 2px solid #dee2e6 !important;
+  border-radius: 8px !important;
+  text-align: center !important;
+  font-weight: 600 !important;
+  letter-spacing: 1px !important;
+}
+
+.secret-input .k-input:focus {
+  border-color: #646cff !important;
+  box-shadow: 0 0 0 0.2rem rgba(100, 108, 255, 0.25) !important;
+}
+
+.secret-input.k-disabled .k-input {
+  background-color: #e9ecef !important;
+  border-color: #6c757d !important;
+}
+
+.input-info {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.found-message {
+  color: #28a745 !important;
+  font-weight: bold;
+  background-color: #d4edda;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border-left: 4px solid #28a745;
+  margin: 0.5rem 0 !important;
+}
+
+.char-count {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin: 0.5rem 0 !important;
+}
+
 .puzzle-progress {
   margin-top: 1.5rem;
   text-align: center;
