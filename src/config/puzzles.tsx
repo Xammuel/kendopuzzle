@@ -5,6 +5,7 @@ import MultiSelectPuzzle from '../components/puzzles/MultiSelectPuzzle'
 import WordHuntPuzzle from '../components/puzzles/WordHuntPuzzle'
 import RiddleSlidersPuzzle from '../components/puzzles/RiddleSlidersPuzzle'
 import ColorEquationPuzzle from '../components/puzzles/ColorEquationPuzzle'
+import GridMemoryPuzzle from '../components/puzzles/GridMemoryPuzzle'
 import BlankPuzzle from '../components/puzzles/BlankPuzzle'
 
 // Create puzzle configurations
@@ -47,9 +48,9 @@ export const puzzleConfigs: PuzzleConfig[] = [
   },
   {
     id: 6,
-    title: "Puzzle 7",
-    description: "Coming soon!",
-    component: (props) => <BlankPuzzle {...props} puzzleNumber={7} />
+    title: "Grid Memory",
+    description: "Memorize and recreate the pattern",
+    component: GridMemoryPuzzle
   },
   {
     id: 7,
