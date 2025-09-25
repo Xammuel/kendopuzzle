@@ -4,6 +4,7 @@ import DatePickerPuzzle from '../components/puzzles/DatePickerPuzzle'
 import MultiSelectPuzzle from '../components/puzzles/MultiSelectPuzzle'
 import WordHuntPuzzle from '../components/puzzles/WordHuntPuzzle'
 import RiddleSlidersPuzzle from '../components/puzzles/RiddleSlidersPuzzle'
+import ColorEquationPuzzle from '../components/puzzles/ColorEquationPuzzle'
 import BlankPuzzle from '../components/puzzles/BlankPuzzle'
 
 // Create puzzle configurations
@@ -40,9 +41,9 @@ export const puzzleConfigs: PuzzleConfig[] = [
   },
   {
     id: 5,
-    title: "Puzzle 6",
-    description: "Coming soon!", 
-    component: (props) => <BlankPuzzle {...props} puzzleNumber={6} />
+    title: "Color Equation Solver",
+    description: "Mix colors using color theory",
+    component: ColorEquationPuzzle
   },
   {
     id: 6,
