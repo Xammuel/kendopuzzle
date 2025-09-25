@@ -61,23 +61,13 @@ const WordHuntPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) => {
       
       <div className="story-container">
         <div className="story-content">
-          <h3>The Digital Quest</h3>
+          <h3>The Hidden Message</h3>
           <p>
-            In the depths of the ancient library, Sarah discovered a mysterious manuscript. 
-            The parchment spoke of a legendary framework, known to bring <strong>harmony</strong> between 
-            design and functionality. Many developers had sought this <em>treasure</em>, but few 
-            understood its true power.
-          </p>
-          <p>
-            The manuscript contained cryptic instructions: "Seek the component that reveals{' '}
-            <span className="important-word">truth</span>{' '}when darkness falls upon it. In the 
-            realm of user interfaces, where interactions dance like shadows, one must find 
-            the element that shows knowledge upon a gentle touch."
+            Sarah found an old document about a powerful development framework. The text spoke 
+            of components that could reveal hidden information when touched.
           </p>
           <div className="special-paragraph">
-            As Sarah pondered these words, she realized the <strong>solution</strong> lay not 
-            in complex algorithms, but in simple gestures. The ancient text continued: "The 
-            wise developer knows that some secrets are hidden in plain sight, waiting for the{' '}
+            The document explained: "Some secrets are hidden in plain sight, waiting for the{' '}
             <span className="tooltip-container">
               <button 
                 type="button"
@@ -94,12 +84,10 @@ const WordHuntPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) => {
                   {secretWord}
                 </div>
               )}
-            </span>{' '}of understanding."
+            </span>{' '}of understanding to be discovered."
           </div>
           <p>
-            With this <em>knowledge</em>, she understood that the path forward required both 
-            patience and curiosity. The manuscript's final words echoed in her mind: "The 
-            seeker who discovers the hidden word shall unlock the next chapter of their journey."
+            The seeker who discovers the hidden word shall unlock the next puzzle.
           </p>
         </div>
       </div>
