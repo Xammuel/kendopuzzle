@@ -762,3 +762,194 @@
     padding: 1rem;
   }
 }
+
+/* Riddle Sliders Puzzle Styles */
+.riddle-sliders-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 2px solid #dee2e6;
+  max-width: 900px;
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.riddle-slider-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+  min-width: 150px;
+  max-width: 200px;
+}
+
+.riddle-text {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.riddle-number {
+  display: inline-block;
+  background-color: #646cff;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.riddle-text p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #495057;
+  font-style: italic;
+  min-height: 60px;
+}
+
+.slider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  height: 200px;
+}
+
+.riddle-slider {
+  height: 150px !important;
+  transition: all 0.3s ease !important;
+}
+
+.riddle-slider.correct .k-slider-track {
+  background-color: #28a745 !important;
+}
+
+.riddle-slider.incorrect .k-slider-track {
+  background-color: #dc3545 !important;
+}
+
+.riddle-slider.correct .k-draghandle {
+  background-color: #28a745 !important;
+  border-color: #1e7e34 !important;
+}
+
+.riddle-slider.incorrect .k-draghandle {
+  background-color: #dc3545 !important;
+  border-color: #bd2130 !important;
+}
+
+.value-display {
+  background-color: #ffffff;
+  border: 2px solid #dee2e6;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #495057;
+  transition: all 0.3s ease;
+}
+
+.current-value.correct-value {
+  background-color: #d4edda;
+  border-color: #28a745;
+  color: #155724;
+}
+
+.cipher-status {
+  text-align: center;
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #646cff;
+}
+
+.cipher-status p {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #495057;
+}
+
+.partial-message {
+  color: #856404 !important;
+  font-weight: bold;
+  background-color: #fff3cd;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border-left: 4px solid #ffc107;
+  margin: 1rem 0 !important;
+}
+
+/* Responsive styles for riddle sliders */
+@media (max-width: 768px) {
+  .riddle-sliders-container {
+    gap: 1rem;
+    padding: 1rem;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .riddle-slider-item {
+    min-width: 120px;
+    max-width: 280px;
+    width: 100%;
+    padding: 1rem;
+  }
+  
+  .riddle-text p {
+    font-size: 0.85rem;
+    min-height: 50px;
+  }
+  
+  .slider-container {
+    height: 150px;
+  }
+  
+  .riddle-slider {
+    height: 120px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .riddle-sliders-container {
+    padding: 0.75rem;
+  }
+  
+  .riddle-slider-item {
+    padding: 0.75rem;
+  }
+  
+  .riddle-text p {
+    font-size: 0.8rem;
+    min-height: 45px;
+  }
+  
+  .slider-container {
+    height: 130px;
+  }
+  
+  .riddle-slider {
+    height: 100px !important;
+  }
+  
+  .value-display {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+}
