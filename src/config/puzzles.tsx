@@ -6,6 +6,7 @@ import WordHuntPuzzle from '../components/puzzles/WordHuntPuzzle'
 import RiddleSlidersPuzzle from '../components/puzzles/RiddleSlidersPuzzle'
 import ColorEquationPuzzle from '../components/puzzles/ColorEquationPuzzle'
 import GridMemoryPuzzle from '../components/puzzles/GridMemoryPuzzle'
+import ContextMenuPuzzle from '../components/puzzles/ContextMenuPuzzle'
 import BlankPuzzle from '../components/puzzles/BlankPuzzle'
 
 // Create puzzle configurations
@@ -54,9 +55,9 @@ export const puzzleConfigs: PuzzleConfig[] = [
   },
   {
     id: 7,
-    title: "Puzzle 8",
-    description: "Coming soon!",
-    component: (props) => <BlankPuzzle {...props} puzzleNumber={8} />
+    title: "The Treasure Mystery",
+    description: "Right-click to interact with characters and solve the mystery",
+    component: ContextMenuPuzzle
   },
   {
     id: 8,
