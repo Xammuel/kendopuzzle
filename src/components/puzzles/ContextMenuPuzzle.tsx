@@ -36,7 +36,7 @@ const ContextMenuPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) =
   
   // Create randomized order of characters/objects using Fisher-Yates shuffle
   const [characterOrder] = useState(() => {
-    const characters = ['guard', 'wizard', 'chest', 'cat', 'librarian', 'scroll']
+    const characters = ['guard', 'wizard', 'chest', 'cat', 'librarian']
     // Fisher-Yates shuffle algorithm
     for (let i = characters.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -44,6 +44,14 @@ const ContextMenuPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) =
     }
     return characters
   })
+
+  // Get current characters to display (include scroll only if chest is opened)
+  const getCurrentCharacters = () => {
+    if (gameState.openedChest) {
+      return [...characterOrder, 'scroll']
+    }
+    return characterOrder
+  }
 
   const handleContextMenu = (e: React.MouseEvent, target: string) => {
     e.preventDefault()
@@ -69,9 +77,11 @@ const ContextMenuPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) =
 
   const handleWizardAction = (action: string) => {
     if (action === 'ask-key') {
-      if (!gameState.gotKey) {
+      if (gameState.talkedToGuard && !gameState.gotKey) {
         setGameState(prev => ({ ...prev, gotKey: true }))
         setMessage("Wizard: 'Here's the key! But beware, the chest holds more than treasure...'")
+      } else if (!gameState.talkedToGuard) {
+        setMessage("Wizard: 'Why would you need a key? Talk to others first.'")
       } else {
         setMessage("Wizard: 'I already gave you the key!'")
       }
@@ -113,12 +123,12 @@ const ContextMenuPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) =
     if (action === 'pet') {
       if (!gameState.petCat) {
         setGameState(prev => ({ ...prev, petCat: true }))
-        setMessage("Cat: 'Purr... The librarian knows ancient secrets about treasure chests...'")
+        setMessage("Cat: 'Purr... I once saw a mouse run behind that bookshelf over there...'")
       } else {
-        setMessage("Cat: 'Meow... I already told you about the librarian!'")
+        setMessage("Cat: 'Meow... *stretches lazily*'")
       }
     } else if (action === 'talk') {
-      setMessage("Cat: 'Meow meow... Pet me for a hint!'")
+      setMessage("Cat: 'Meow meow... I'm just here enjoying the sunshine!'")
     }
   }
 
@@ -126,12 +136,12 @@ const ContextMenuPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) =
     if (action === 'consult') {
       if (!gameState.consultedLibrarian) {
         setGameState(prev => ({ ...prev, consultedLibrarian: true }))
-        setMessage("Librarian: 'Ancient chests often contain more than gold... look for scrolls!'")
+        setMessage("Librarian: 'I specialize in medieval poetry and herb gardening, not treasure hunting!'")
       } else {
-        setMessage("Librarian: 'I already shared the ancient wisdom with you!'")
+        setMessage("Librarian: 'As I said, I don't know anything about treasures.'")
       }
     } else if (action === 'talk') {
-      setMessage("Librarian: 'These old books hold many secrets...'")
+      setMessage("Librarian: 'Shh! This is a library. I'm cataloging rare flower specimens.'")
     }
   }
 
@@ -169,11 +179,14 @@ const ContextMenuPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) =
     switch (target) {
       case 'guard':
         return [{ text: 'Talk to Guard', data: { action: 'talk' } }]
-      case 'wizard':
-        return [
-          { text: 'Talk to Wizard', data: { action: 'talk' } },
-          { text: 'Ask for Key', data: { action: 'ask-key' } }
-        ]
+      case 'wizard': {
+        const wizardItems = [{ text: 'Talk to Wizard', data: { action: 'talk' } }]
+        // Only show "Ask for Key" option if player has talked to the guard
+        if (gameState.talkedToGuard) {
+          wizardItems.push({ text: 'Ask for Key', data: { action: 'ask-key' } })
+        }
+        return wizardItems
+      }
       case 'chest':
         return [
           { text: 'Examine Chest', data: { action: 'examine' } },
@@ -250,7 +263,7 @@ const ContextMenuPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) =
         </div>
 
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'space-around' }}>
-          {characterOrder.map(characterType => renderCharacter(characterType))}
+          {getCurrentCharacters().map(characterType => renderCharacter(characterType))}
         </div>
 
         {showContextMenu && (
