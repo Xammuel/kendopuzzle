@@ -8,7 +8,7 @@ import ColorEquationPuzzle from '../components/puzzles/ColorEquationPuzzle'
 import GridMemoryPuzzle from '../components/puzzles/GridMemoryPuzzle'
 import ContextMenuPuzzle from '../components/puzzles/ContextMenuPuzzle'
 import SwitchNetworkPuzzle from '../components/puzzles/SwitchNetworkPuzzle'
-import BlankPuzzle from '../components/puzzles/BlankPuzzle'
+import PuzzleOrderChallenge from '../components/puzzles/PuzzleOrderChallenge'
 
 // Create puzzle configurations
 export const puzzleConfigs: PuzzleConfig[] = [
@@ -68,9 +68,9 @@ export const puzzleConfigs: PuzzleConfig[] = [
   },
   {
     id: 9,
-    title: "Puzzle 10",
-    description: "Coming soon!",
-    component: (props) => <BlankPuzzle {...props} puzzleNumber={10} />
+    title: "The Grand Finale: Puzzle Journey",
+    description: "Arrange all the puzzles in the order you encountered them",
+    component: PuzzleOrderChallenge
   }
 ]
 
