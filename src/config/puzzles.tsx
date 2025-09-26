@@ -7,6 +7,7 @@ import RiddleSlidersPuzzle from '../components/puzzles/RiddleSlidersPuzzle'
 import ColorEquationPuzzle from '../components/puzzles/ColorEquationPuzzle'
 import GridMemoryPuzzle from '../components/puzzles/GridMemoryPuzzle'
 import ContextMenuPuzzle from '../components/puzzles/ContextMenuPuzzle'
+import SwitchNetworkPuzzle from '../components/puzzles/SwitchNetworkPuzzle'
 import BlankPuzzle from '../components/puzzles/BlankPuzzle'
 
 // Create puzzle configurations
@@ -61,9 +62,9 @@ export const puzzleConfigs: PuzzleConfig[] = [
   },
   {
     id: 8,
-    title: "Puzzle 9",
-    description: "Coming soon!",
-    component: (props) => <BlankPuzzle {...props} puzzleNumber={9} />
+    title: "The Switch Network Challenge",
+    description: "Activate all switches simultaneously to power up the system",
+    component: SwitchNetworkPuzzle
   },
   {
     id: 9,
