@@ -12,15 +12,15 @@ const MultiSelectPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) =
 
   // Options with correct answers and distractors
   const options: SelectOption[] = [
-    { text: 'kendo', value: 'kendo' },
-    { text: 'react', value: 'react' },
     { text: 'angular', value: 'angular' },
     { text: 'vue', value: 'vue' },
     { text: 'svelte', value: 'svelte' },
+    { text: 'react', value: 'react' },
     { text: 'ember', value: 'ember' },
     { text: 'backbone', value: 'backbone' },
     { text: 'jquery', value: 'jquery' },
     { text: 'polymer', value: 'polymer' },
+    { text: 'kendo', value: 'kendo' },
     { text: 'lit', value: 'lit' },
     { text: 'alpine', value: 'alpine' },
     { text: 'stimulus', value: 'stimulus' }
@@ -58,12 +58,10 @@ const MultiSelectPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) =
     <div className="puzzle-container">
       <div className="puzzle-info">
         <h2>Puzzle 3: Technology Selection</h2>
-        <p>Select the two technologies that power this application!</p>
-        <p className="hint">💡 Hint: Look at the components we're using and the main framework...</p>
-        
+        <p>Select words to create the technology that powers this application!</p>
         {isCompleted && <p className="win-message">🎉 Perfect! KendoReact it is!</p>}
         {hasWrongSelection && (
-          <p className="wrong-message">❌ Not quite right. You need exactly 2 specific technologies!</p>
+          <p className="wrong-message">❌ Not quite right. Maybe there's a hint somewhere on this page..</p>
         )}
       </div>
       
