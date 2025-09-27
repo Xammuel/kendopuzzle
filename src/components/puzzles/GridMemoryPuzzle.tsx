@@ -85,6 +85,66 @@ const GridMemoryPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) =>
     }, showTime)
   }
 
+  // Retry the same level with the same pattern
+  const retryLevel = () => {
+    const newGrid = initializeGrid()
+    
+    // Show the existing pattern again (don't generate new one)
+    const gridWithPattern = newGrid.map(cell => ({
+      ...cell,
+      isActive: targetPattern.includes(cell.id),
+      isPlayerActive: false
+    }))
+    
+    setGrid(gridWithPattern)
+    setPlayerPattern([])
+    setGamePhase('showing')
+    
+    // Hide pattern after show time
+    setTimeout(() => {
+      const gridWithoutPattern = newGrid.map(cell => ({
+        ...cell,
+        isActive: false,
+        isPlayerActive: false
+      }))
+      setGrid(gridWithoutPattern)
+      setGamePhase('input')
+    }, showTime)
+  }
+
+  // Restart game from level 1
+  const restartGame = () => {
+    setLevel(1)
+    setShowTime(3000)
+    setLives(3)
+    
+    const newGrid = initializeGrid()
+    const pattern = generatePattern(1) // Force level 1 pattern (4 cells)
+    
+    // Show pattern
+    const gridWithPattern = newGrid.map(cell => ({
+      ...cell,
+      isActive: pattern.includes(cell.id),
+      isPlayerActive: false
+    }))
+    
+    setGrid(gridWithPattern)
+    setTargetPattern(pattern)
+    setPlayerPattern([])
+    setGamePhase('showing')
+    
+    // Hide pattern after show time
+    setTimeout(() => {
+      const gridWithoutPattern = newGrid.map(cell => ({
+        ...cell,
+        isActive: false,
+        isPlayerActive: false
+      }))
+      setGrid(gridWithoutPattern)
+      setGamePhase('input')
+    }, 3000)
+  }
+
   // Handle cell click during input phase
   const handleCellClick = (cellId: number) => {
     if (gamePhase !== 'input' || isCompleted) return
@@ -147,15 +207,12 @@ const GridMemoryPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) =>
       if (newLives <= 0) {
         // Game over - restart from level 1
         setTimeout(() => {
-          setLevel(1)
-          setShowTime(3000)
-          setLives(3)
-          startLevel()
+          restartGame()
         }, 2000)
       } else {
-        // Try again same level
+        // Try again same level with same pattern
         setTimeout(() => {
-          startLevel()
+          retryLevel()
         }, 2000)
       }
     }
@@ -231,7 +288,7 @@ const GridMemoryPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) =>
         <h2>Puzzle 7: Grid Memory</h2>
         <div className="game-stats">
           <p>Level: <strong>{level}/5</strong></p>
-          <p>Pattern Size: <strong>{Math.min(3 + level, 8)} cells</strong></p>
+          <p>Pattern Size: <strong>{targetPattern.length || Math.min(3 + level, 8)} cells</strong></p>
           <p>Lives: <strong>{lives}</strong>
             {showLifeLost && <span className="life-lost-animation">-1</span>}
           </p>
