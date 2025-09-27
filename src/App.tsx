@@ -1,13 +1,11 @@
 import { Button } from '@progress/kendo-react-buttons'
 import { usePuzzleManager } from './hooks/usePuzzleManager'
 import { getPuzzleConfig } from './config/puzzles'
-import ProgressIndicator from './components/ProgressIndicator'
 import './App.css'
 
 function App() {
   const {
     currentPuzzleIndex,
-    completedPuzzles,
     totalPuzzles,
     completePuzzle,
     navigateToPuzzle,
@@ -42,13 +40,6 @@ function App() {
       <header className="header">
         <h1>KendoPuzzle</h1>
         <p>Can you solve all {totalPuzzles} puzzles hidden in each KendoReact component?</p>
-        
-        <ProgressIndicator
-          current={progress.current}
-          total={progress.total}
-          completedPuzzles={completedPuzzles}
-          currentPuzzleIndex={currentPuzzleIndex}
-        />
       </header>
 
       <main className="main">
