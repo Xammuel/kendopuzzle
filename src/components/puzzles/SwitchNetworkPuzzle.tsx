@@ -123,7 +123,29 @@ const SwitchNetworkPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted })
                 {switchState.name}
               </h3>
               
-              <div style={{ marginBottom: '15px' }}>
+              <div style={{ 
+                marginBottom: '15px', 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center',
+                position: 'relative'
+              }}>
+                {/* Indicator Light - Left side for switches 1, 3, 5 (odd IDs) */}
+                {switchState.id % 2 === 1 && (
+                  <div
+                    style={{
+                      position: 'absolute',
+                      left: '90px',
+                      width: '12px',
+                      height: '12px',
+                      borderRadius: '50%',
+                      backgroundColor: switchState.isOn ? '#28a745' : '#dc3545',
+                      boxShadow: `0 0 8px ${switchState.isOn ? '#28a745' : '#dc3545'}`,
+                      transition: 'all 0.3s ease'
+                    }}
+                  />
+                )}
+                
                 <button
                   onClick={() => handleSwitchToggle(switchState.id)}
                   style={{
@@ -153,10 +175,23 @@ const SwitchNetworkPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted })
                       boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
                     }}
                   />
-                  <span style={{ position: 'relative', zIndex: 1 }}>
-                    {switchState.isOn ? 'ON' : 'OFF'}
-                  </span>
                 </button>
+
+                {/* Indicator Light - Right side for switches 2, 4, 6 (even IDs) */}
+                {switchState.id % 2 === 0 && (
+                  <div
+                    style={{
+                      position: 'absolute',
+                      left: '90px',
+                      width: '12px',
+                      height: '12px',
+                      borderRadius: '50%',
+                      backgroundColor: switchState.isOn ? '#28a745' : '#dc3545',
+                      boxShadow: `0 0 8px ${switchState.isOn ? '#28a745' : '#dc3545'}`,
+                      transition: 'all 0.3s ease'
+                    }}
+                  />
+                )}
               </div>
               
               <div style={{ 

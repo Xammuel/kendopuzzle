@@ -245,18 +245,6 @@ const PuzzleOrderChallenge: React.FC<PuzzleProps> = ({ onComplete, isCompleted }
             </button>
           </div>
         )}
-
-        {/* Legend */}
-        <div style={{ 
-          marginTop: '20px', 
-          padding: '10px', 
-          backgroundColor: '#e6f3ff', 
-          borderRadius: '4px',
-          fontSize: '12px',
-          color: '#666'
-        }}>
-          💡 <strong>Tip:</strong> Drag the puzzle cards to reorder them. Each color represents a different KendoReact component type used in that puzzle!
-        </div>
       </div>
     </div>
   )
