@@ -22,13 +22,13 @@ const GridMemoryPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) =>
   const [lives, setLives] = useState<number>(3)
   const [showLifeLost, setShowLifeLost] = useState<boolean>(false)
 
-  // Initialize 4x4 grid
+  // Initialize 6x6 grid
   const initializeGrid = (): GridCell[] => {
     const newGrid: GridCell[] = []
-    for (let row = 0; row < 4; row++) {
-      for (let col = 0; col < 4; col++) {
+    for (let row = 0; row < 6; row++) {
+      for (let col = 0; col < 6; col++) {
         newGrid.push({
-          id: row * 4 + col,
+          id: row * 6 + col,
           row,
           col,
           isActive: false,
@@ -41,12 +41,12 @@ const GridMemoryPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) =>
 
   // Generate random pattern based on level
   const generatePattern = (level: number): number[] => {
-    const patternLength = Math.min(3 + level, 8) // Start with 4 cells, max 8
+    const patternLength = 3 + level // Level 1 = 4 cells, Level 2 = 5 cells, etc.
     const pattern: number[] = []
     const usedCells = new Set<number>()
 
     while (pattern.length < patternLength) {
-      const randomCell = Math.floor(Math.random() * 16)
+      const randomCell = Math.floor(Math.random() * 36) // 6x6 grid = 36 cells
       if (!usedCells.has(randomCell)) {
         pattern.push(randomCell)
         usedCells.add(randomCell)
@@ -288,7 +288,7 @@ const GridMemoryPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) =>
         <h2>Puzzle 7: Grid Memory</h2>
         <div className="game-stats">
           <p>Level: <strong>{level}/5</strong></p>
-          <p>Pattern Size: <strong>{targetPattern.length || Math.min(3 + level, 8)} cells</strong></p>
+          <p>Pattern Size: <strong>{targetPattern.length || (3 + level)} cells</strong></p>
           <p>Lives: <strong>{lives}</strong>
             {showLifeLost && <span className="life-lost-animation">-1</span>}
           </p>
