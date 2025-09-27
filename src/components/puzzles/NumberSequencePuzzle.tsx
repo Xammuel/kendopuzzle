@@ -6,6 +6,7 @@ const NumberSequencePuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }
   const [buttons, setButtons] = useState<GridButton[]>([])
   const [currentSequence, setCurrentSequence] = useState<number[]>([])
   const [nextExpected, setNextExpected] = useState<number>(1)
+  const [clickedButton, setClickedButton] = useState<number | null>(null)
 
   // Shuffle function to randomize button positions
   const shuffleArray = (array: number[]): number[] => {
@@ -37,6 +38,10 @@ const NumberSequencePuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }
   const handleButtonClick = (button: GridButton) => {
     if (isCompleted) return
 
+    // Show brief highlight for clicked button
+    setClickedButton(button.number)
+    setTimeout(() => setClickedButton(null), 500)
+
     if (button.number === nextExpected) {
       // Correct button pressed
       const newSequence = [...currentSequence, button.number]
@@ -59,17 +64,13 @@ const NumberSequencePuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }
   // Initialize puzzle on mount
   useEffect(() => {
     initializePuzzle()
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="puzzle-container">
       <div className="puzzle-info">
         <h2>Puzzle 1: Number Sequence</h2>
-        <div className="game-stats">
-          <p>Next number: <strong>{isCompleted ? 'Complete!' : nextExpected}</strong></p>
-          <p>Progress: {currentSequence.length}/9</p>
-          {isCompleted && <p className="win-message">🎉 Puzzle Complete!</p>}
-        </div>
+        {isCompleted && <p className="win-message">🎉 Puzzle Complete!</p>}
       </div>
 
       <div className="grid-container">
@@ -77,8 +78,8 @@ const NumberSequencePuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }
           <Button
             key={button.id}
             className={`grid-button ${
-              currentSequence.includes(button.number) ? 'pressed' : ''
-            } ${button.number === nextExpected ? 'next' : ''}`}
+              clickedButton === button.number ? 'clicked' : ''
+            }`}
             onClick={() => handleButtonClick(button)}
             disabled={isCompleted}
           >

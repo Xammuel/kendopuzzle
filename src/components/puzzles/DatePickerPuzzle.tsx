@@ -34,8 +34,6 @@ const DatePickerPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) =>
     <div className="puzzle-container">
       <div className="puzzle-info">
         <h2>Puzzle 2: Date Mystery</h2>
-        <p>Select the correct date to unlock the next puzzle!</p>
-        <p className="hint">💡 Hint: Think about the beginning of a decade that changed everything...</p>
         {isCompleted && <p className="win-message">🎉 Correct date! Well done!</p>}
         {selectedDate && !isCorrectDate && !isCompleted && (
           <p className="wrong-message">❌ Not quite right. Try a different date!</p>
