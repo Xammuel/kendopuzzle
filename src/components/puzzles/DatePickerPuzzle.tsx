@@ -11,8 +11,8 @@ const DatePickerPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) =>
     setSelectedDate(date)
     
     if (date) {
-      // Check if the selected date is January 1st, 1990
-      const targetDate = new Date(1990, 0, 1) // Month is 0-indexed (0 = January)
+      // Check if the selected date is July 20th, 1969
+      const targetDate = new Date(1969, 6, 20) // Month is 0-indexed (6 = July)
       
       if (date.getFullYear() === targetDate.getFullYear() &&
           date.getMonth() === targetDate.getMonth() &&
@@ -26,14 +26,15 @@ const DatePickerPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) =>
   }
 
   const isCorrectDate = selectedDate && 
-    selectedDate.getFullYear() === 1990 &&
-    selectedDate.getMonth() === 0 &&
-    selectedDate.getDate() === 1
+    selectedDate.getFullYear() === 1969 &&
+    selectedDate.getMonth() === 6 &&
+    selectedDate.getDate() === 20
 
   return (
     <div className="puzzle-container">
       <div className="puzzle-info">
         <h2>Puzzle 2: Date Mystery</h2>
+        <p className="hint">"That's one small step for man, one giant leap for mankind."</p>
         {isCompleted && <p className="win-message">🎉 Correct date! Well done!</p>}
         {selectedDate && !isCorrectDate && !isCompleted && (
           <p className="wrong-message">❌ Not quite right. Try a different date!</p>
