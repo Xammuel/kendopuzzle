@@ -7,6 +7,7 @@ const WordHuntPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) => {
   const [hasFoundWord, setHasFoundWord] = useState<boolean>(false)
   const [showHint, setShowHint] = useState<boolean>(false)
   const [showTooltip, setShowTooltip] = useState<boolean>(false)
+  const [failedAttempts, setFailedAttempts] = useState<number>(0)
 
   // The secret word hidden in the tooltip
   const secretWord = 'REVELATION'
@@ -24,6 +25,23 @@ const WordHuntPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) => {
     }
   }
 
+  // Handle key down to detect Enter key for failed attempts
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      const currentValue = inputValue.toUpperCase()
+      if (currentValue.length > 0 && currentValue !== secretWord) {
+        // Count as failed attempt when user presses Enter with wrong answer
+        const newFailedAttempts = failedAttempts + 1
+        setFailedAttempts(newFailedAttempts)
+        
+        // Show hint after 5 failed attempts
+        if (newFailedAttempts >= 5 && !hasFoundWord) {
+          setShowHint(true)
+        }
+      }
+    }
+  }
+
   // Handle tooltip show - this reveals the secret word
   const handleTooltipShow = () => {
     setHasFoundWord(true)
@@ -34,12 +52,7 @@ const WordHuntPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) => {
     setShowTooltip(false)
   }
 
-  // Show hint after 30 seconds or if user seems stuck
-  setTimeout(() => {
-    if (!hasFoundWord && !isCompleted) {
-      setShowHint(true)
-    }
-  }, 30000)
+
 
   const isCorrectWord = inputValue.toUpperCase() === secretWord
   const hasIncorrectInput = inputValue.length > 0 && !isCorrectWord && !isCompleted
@@ -48,8 +61,7 @@ const WordHuntPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) => {
     <div className="puzzle-container">
       <div className="puzzle-info">
         <h2>Puzzle 4: The Hidden Word</h2>
-        <p>Okay, well done so far! But now things are going to get more difficult from here..
-            <br />Read the story carefully and find the hidden word. Enter it below to unlock the next puzzle!</p>
+        <p>Okay, well done so far! But now things are going to get more difficult from here...</p>
         {showHint && !hasFoundWord && (
           <p className="hint">💡 Hint: Try hovering over words that seem significant or emphasized...</p>
         )}
@@ -89,30 +101,26 @@ const WordHuntPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) => {
           <p>
             The seeker who discovers the hidden word shall unlock the next puzzle.
           </p>
-        </div>
-      </div>
-
-      <div className="input-container">
-        <div className="input-wrapper">
-          <label htmlFor="secret-word" className="input-label">
-            Enter the hidden word:
-          </label>
-          <Input
-            id="secret-word"
-            value={inputValue}
-            onChange={handleInputChange}
-            placeholder="Type the secret word here..."
-            className="secret-input"
-            disabled={isCompleted}
-          />
           
-          <div className="input-info">
-            {hasFoundWord && !isCompleted && (
-              <p className="found-message">✨ You've found something! Now enter what you discovered...</p>
-            )}
-            {inputValue.length > 0 && (
-              <p className="char-count">Characters: {inputValue.length}</p>
-            )}
+          <div className="input-section">
+            <label htmlFor="secret-word" className="input-label">
+              Enter the hidden word:
+            </label>
+            <Input
+              id="secret-word"
+              value={inputValue}
+              onChange={handleInputChange}
+              onKeyDown={handleKeyDown}
+              placeholder="Type the secret word here..."
+              className="secret-input"
+              disabled={isCompleted}
+            />
+            
+            <div className="input-info">
+              {hasFoundWord && !isCompleted && (
+                <p className="found-message">✨ You've found something! Now enter what you discovered...</p>
+              )}
+            </div>
           </div>
         </div>
       </div>
