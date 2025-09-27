@@ -20,6 +20,7 @@ const GridMemoryPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) =>
   const [targetPattern, setTargetPattern] = useState<number[]>([])
   const [playerPattern, setPlayerPattern] = useState<number[]>([])
   const [lives, setLives] = useState<number>(3)
+  const [showLifeLost, setShowLifeLost] = useState<boolean>(false)
 
   // Initialize 4x4 grid
   const initializeGrid = (): GridCell[] => {
@@ -139,6 +140,10 @@ const GridMemoryPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) =>
       const newLives = lives - 1
       setLives(newLives)
       
+      // Show life lost animation
+      setShowLifeLost(true)
+      setTimeout(() => setShowLifeLost(false), 1000)
+      
       if (newLives <= 0) {
         // Game over - restart from level 1
         setTimeout(() => {
@@ -227,7 +232,9 @@ const GridMemoryPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) =>
         <div className="game-stats">
           <p>Level: <strong>{level}/5</strong></p>
           <p>Pattern Size: <strong>{Math.min(3 + level, 8)} cells</strong></p>
-          <p>Lives: <strong>{lives}</strong></p>
+          <p>Lives: <strong>{lives}</strong>
+            {showLifeLost && <span className="life-lost-animation">-1</span>}
+          </p>
           <p className={`phase-message ${gamePhase}`}>{getPhaseMessage()}</p>
         </div>
       </div>

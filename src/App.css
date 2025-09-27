@@ -419,6 +419,28 @@
 .game-stats p {
   margin: 0.3rem 0;
   font-size: 1rem;
+  position: relative;
+}
+
+.life-lost-animation {
+  position: absolute;
+  color: #dc3545 !important;
+  font-weight: bold !important;
+  font-size: 1.2rem !important;
+  margin-left: 0.5rem;
+  animation: lifeLostFloat 1s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes lifeLostFloat {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
 }
 
 .placeholder-puzzle {
