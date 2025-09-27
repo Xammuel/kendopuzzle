@@ -19,8 +19,7 @@ const GridMemoryPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) =>
   const [showTime, setShowTime] = useState<number>(3000) // Time to show pattern in ms
   const [targetPattern, setTargetPattern] = useState<number[]>([])
   const [playerPattern, setPlayerPattern] = useState<number[]>([])
-  const [attempts, setAttempts] = useState<number>(0)
-  const [maxAttempts] = useState<number>(3)
+  const [lives, setLives] = useState<number>(3)
 
   // Initialize 4x4 grid
   const initializeGrid = (): GridCell[] => {
@@ -137,14 +136,15 @@ const GridMemoryPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) =>
       }
     } else {
       setGamePhase('failed')
-      setAttempts(prev => prev + 1)
+      const newLives = lives - 1
+      setLives(newLives)
       
-      if (attempts + 1 >= maxAttempts) {
+      if (newLives <= 0) {
         // Game over - restart from level 1
         setTimeout(() => {
           setLevel(1)
           setShowTime(3000)
-          setAttempts(0)
+          setLives(3)
           startLevel()
         }, 2000)
       } else {
@@ -183,7 +183,7 @@ const GridMemoryPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) =>
       case 'success':
         return level >= 5 ? '🎉 Puzzle Complete!' : `Level ${level} Complete! Next level...`
       case 'failed':
-        return attempts + 1 >= maxAttempts ? 
+        return lives <= 0 ? 
                'Game Over! Restarting from Level 1...' : 
                'Wrong pattern! Try again...'
       default:
@@ -227,7 +227,7 @@ const GridMemoryPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted }) =>
         <div className="game-stats">
           <p>Level: <strong>{level}/5</strong></p>
           <p>Pattern Size: <strong>{Math.min(3 + level, 8)} cells</strong></p>
-          <p>Attempts: <strong>{attempts}/{maxAttempts}</strong></p>
+          <p>Lives: <strong>{lives}</strong></p>
           <p className={`phase-message ${gamePhase}`}>{getPhaseMessage()}</p>
         </div>
       </div>
