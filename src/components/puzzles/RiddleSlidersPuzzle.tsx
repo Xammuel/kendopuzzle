@@ -74,7 +74,6 @@ const RiddleSlidersPuzzle: React.FC<PuzzleProps> = ({ onComplete, isCompleted })
       <div className="puzzle-info">
         <h2>Puzzle 5: The Cipher of Three</h2>
         <p>Solve each riddle and set the corresponding slider to the correct number (1-10).</p>
-        <p>All sliders must be correct simultaneously to proceed.</p>
         
         {currentState === 'completed' && (
           <p className="win-message">🎉 The cipher is broken! You have proven your mathematical wisdom!</p>
